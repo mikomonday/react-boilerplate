@@ -10,7 +10,9 @@ const store = configureStore();
 
 const App = () => (
   <Provider store={store}>
-    <Test />
+    <main id="app">
+      <Test />
+    </main>
   </Provider>
 );
 
