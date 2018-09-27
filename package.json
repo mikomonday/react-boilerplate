@@ -1,0 +1,17 @@
+{
+  "name": "react-boilerplate",
+  "version": "1.0.0",
+  "description": "React Boilerplate",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.3",
+    "npm": "^6.4.1",
+    "react": "^16.5.2",
+    "react-dom": "^16.5.2"
+  }
+}
