@@ -17,4 +17,4 @@ app.use(webpackHotMiddleware(compiler));
 
 app.use(express.static('dist'));
 
-app.listen(port, () => console.log(`Application listening on port ${port}`));
+app.listen(port, () => console.log(`Application listening on port ${port}`)); // eslint-disable-line
