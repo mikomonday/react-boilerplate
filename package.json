@@ -4,7 +4,7 @@
   "description": "React Boilerplate",
   "main": "index.js",
   "scripts": {
-    "build": "cross-env NODE_ENV=development webpack-dev-server",
+    "dev": "cross-env NODE_ENV=development webpack-dev-server",
     "test": "jest"
   },
   "author": "mikomonday",
