@@ -1,40 +1,43 @@
-const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
-  mode: 'development',
+  entry: ['./src/index'],
+  output: {
+    filename: 'bundle.js',
+    path: path.resolve(__dirname, 'dist'),
+  },
+  mode: process.env.NODE_ENV || 'development',
   stats: {
     colors: true,
   },
   devtool: 'eval-source-map',
   plugins: [
-    new CleanWebpackPlugin(['build']),
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoEmitOnErrorsPlugin(),
+    new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       title: 'Boilerplate',
       template: path.join(__dirname, 'src', 'index.html'),
     }),
   ],
-  entry: [
-    'webpack-hot-middleware/client',
-    './src/index.jsx',
-  ],
-  output: {
-    filename: 'bundle.js',
-    path: path.resolve(__dirname, 'build'),
-    publicPath: '/',
+  devServer: {
+    contentBase: path.join(__dirname, 'dist'),
+    port: 9000,
+    hot: true,
   },
   module: {
-    rules: [{
-      test: /\.(js|jsx)$/,
-      exclude: /node_modules/,
-      loader: 'babel-loader',
-    }],
+    rules: [
+      {
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        loader: ['react-hot-loader/webpack', 'babel-loader'],
+      },
+    ],
   },
   resolve: {
-    extensions: ['*', '.js', '.jsx'],
+    extensions: ['.js', '.jsx'],
+    alias: {
+      'react-dom': '@hot-loader/react-dom',
+    },
   },
 };

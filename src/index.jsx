@@ -1,30 +1,21 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { AppContainer } from 'react-hot-loader';
+import { render } from 'react-dom';
+import { Provider } from 'react-redux';
+import configureStore from './redux/store';
 
 // Components
 import App from './components/App';
 
-const root = document.createElement('div');
+// Redux
+const store = configureStore();
+
+const root = document.createElement('main');
+root.setAttribute('id', 'root');
 document.body.appendChild(root);
 
-const render = (Component) => {
-  ReactDOM.render(
-    <AppContainer>
-      <Component />
-    </AppContainer>,
-    root,
-  );
-};
-
-render(App);
-
-// Hot Loader
-/* eslint-disable */
-if (module.hot) {
-  module.hot.accept('./components/App', () => {
-    render(App);
-    render(require('./components/App'));
-  });
-}
-/* eslint-enable */
+render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  root,
+);
